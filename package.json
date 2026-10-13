@@ -1,0 +1,56 @@
+{
+  "name": "yun-mingchao-desktop",
+  "version": "1.0.4",
+  "description": "云·鸣潮 Windows 桌面客户端（官方网页封装）",
+  "author": "Unofficial desktop wrapper",
+  "productName": "云·鸣潮",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "dev.local.yunmingchao.desktop",
+    "productName": "云·鸣潮",
+    "asar": true,
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "directories": {
+      "output": "windows-installer-1.0.4"
+    },
+    "files": [
+      "main.js",
+      "package.json",
+      "assets/**/*"
+    ],
+    "win": {
+      "icon": "assets/icon.png",
+      "signExecutable": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Yun-Mingchao-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "云·鸣潮",
+      "deleteAppDataOnUninstall": false
+    }
+  },
+  "license": "MIT"
+}

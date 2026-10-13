@@ -1,0 +1,15 @@
+node_modules/
+dist/
+release/
+release-client/
+release-final/
+windows-installer*/
+compat-extension/
+*.log
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+YunMingchaoDesktop/
