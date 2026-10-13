@@ -1,14 +1,15 @@
 {
   "name": "yun-mingchao-desktop",
-  "version": "1.0.4",
-  "description": "云·鸣潮 Windows 桌面客户端（官方网页封装）",
+  "version": "1.0.5",
+  "description": "云·鸣潮 Windows / macOS 桌面客户端（官方网页封装）",
   "author": "Unofficial desktop wrapper",
   "productName": "云·鸣潮",
   "main": "main.js",
   "private": true,
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --win nsis"
+    "dist": "electron-builder --win nsis",
+    "dist:mac": "electron-builder --mac dmg --config.directories.output=mac-dist"
   },
   "devDependencies": {
     "electron": "^44.7.0",
@@ -22,7 +23,7 @@
       "mirror": "https://npmmirror.com/mirrors/electron/"
     },
     "directories": {
-      "output": "windows-installer-1.0.4"
+      "output": "windows-installer-1.0.5"
     },
     "files": [
       "main.js",
@@ -50,6 +51,21 @@
       "createStartMenuShortcut": true,
       "shortcutName": "云·鸣潮",
       "deleteAppDataOnUninstall": false
+    },
+    "mac": {
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.games",
+      "target": "dmg",
+      "artifactName": "Yun-Mingchao-${version}-mac-${arch}.${ext}",
+      "minimumSystemVersion": "13.0",
+      "identity": "-",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "notarize": false
+    },
+    "dmg": {
+      "sign": false
     }
   },
   "license": "MIT"

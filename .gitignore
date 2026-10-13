@@ -4,6 +4,7 @@ release/
 release-client/
 release-final/
 windows-installer*/
+mac-dist/
 compat-extension/
 *.log
 .env

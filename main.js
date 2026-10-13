@@ -8,7 +8,10 @@ const APP_ID = 'dev.local.yunmingchao.desktop';
 // Set this before creating any windows, including the login SDK's subframes.
 // Electron's default user agent includes the Chinese product name, which the
 // official SDK cannot encode and some HTTP servers cannot accept.
-const BROWSER_USER_AGENT = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${process.versions.chrome} Safari/537.36`;
+const BROWSER_PLATFORM = process.platform === 'darwin'
+  ? 'Macintosh; Intel Mac OS X 10_15_7'
+  : 'Windows NT 10.0; Win64; x64';
+const BROWSER_USER_AGENT = `Mozilla/5.0 (${BROWSER_PLATFORM}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${process.versions.chrome} Safari/537.36`;
 app.userAgentFallback = BROWSER_USER_AGENT;
 
 let mainWindow = null;
@@ -191,7 +194,26 @@ function createWindow() {
   return win;
 }
 
-Menu.setApplicationMenu(null);
+if (process.platform === 'darwin') {
+  Menu.setApplicationMenu(Menu.buildFromTemplate([
+    { role: 'appMenu' },
+    { role: 'editMenu' },
+    {
+      label: '显示',
+      submenu: [{
+        label: '进入 / 退出全屏',
+        accelerator: 'Control+Command+F',
+        click: () => {
+          const win = BrowserWindow.getFocusedWindow();
+          if (win) win.setFullScreen(!win.isFullScreen());
+        }
+      }]
+    },
+    { role: 'windowMenu' }
+  ]));
+} else {
+  Menu.setApplicationMenu(null);
+}
 
 app.whenReady().then(async () => {
   if (!gotSingleInstanceLock) return;
