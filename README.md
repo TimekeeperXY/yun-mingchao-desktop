@@ -13,6 +13,10 @@
 
 当前源码版本：1.0.5。支持 Windows x64、macOS Intel x64 和 Apple Silicon arm64；需要网络连接和官方云游戏账号。Mac 版要求 macOS 13 或更新版本。
 
+## 搜索关键词
+
+鸣潮 · 云鸣潮 · 云·鸣潮 · Wuthering Waves · WutheringWaves · Electron 云游戏桌面客户端
+
 ## 下载与安装
 
 在 [GitHub Releases](https://github.com/TimekeeperXY/yun-mingchao-desktop/releases) 下载：
